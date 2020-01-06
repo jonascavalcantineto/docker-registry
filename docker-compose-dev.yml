@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+      registry:
+            build:
+                  context: registry/
+                  dockerfile: Dockerfile
+            container_name: registry
+            hostname: registry
+            restart: always
+            ports:
+                  - 5000:5000
+            network_mode: "bridge"
+            volumes:
+                  - ${HOME}/development/servers/registry/data:/var/lib/registry
+      nginx-registry:
+            build:
+                  context: nginx/
+                  dockerfile: Dockerfile
+            container_name: nginx-registry
+            hostname: nginx-docker-registry
+            restart: always
+            network_mode: "bridge"                  
+            environment: 
+                  - ADMIN_REGISTRY_USER=redhat
+                  - ADMIN_RESGITRY_PASSWD=1q2w3e
+                  - SSL=true
+                  - COUNTRY=BR
+                  - STATE=Ceará
+                  - LOCALITY=FOrtaleza
+                  - ORGANIZATION=ETICE
+                  - ORGANIZATIONALUNIT=IT 
+                  - COMMON_NAME=docker-registry.etice.ce.gov.br
+                  - EMAIL=datacenter@etice.ce.gov.br
+            ports:
+                  - 80:80
+                  - 443:443
+            links:
+                  - registry
+            volumes:
+                  - ${HOME}/development/servers/registry/nginx/access:/etc/nginx/conf.d/access
+                  - ${HOME}/development/servers/registry/nginx/certs:/etc/nginx/conf.d/certs
