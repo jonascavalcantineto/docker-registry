@@ -21,16 +21,16 @@ services:
             restart: always
             network_mode: "bridge"                  
             environment: 
-                  - ADMIN_REGISTRY_USER=redhat
+                  - ADMIN_REGISTRY_USER=user
                   - ADMIN_RESGITRY_PASSWD=1q2w3e
                   - SSL=true
                   - COUNTRY=BR
                   - STATE=Ceará
-                  - LOCALITY=FOrtaleza
-                  - ORGANIZATION=ETICE
+                  - LOCALITY=Fortaleza
+                  - ORGANIZATION=MYCOMPANY
                   - ORGANIZATIONALUNIT=IT 
-                  - COMMON_NAME=docker-registry.etice.ce.gov.br
-                  - EMAIL=datacenter@etice.ce.gov.br
+                  - COMMON_NAME=docker-registry.mycompany.com.br
+                  - EMAIL=admin@mycompany.com.br
             ports:
                   - 80:80
                   - 443:443

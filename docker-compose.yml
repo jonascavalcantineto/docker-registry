@@ -11,7 +11,7 @@ services:
                   - 5000:5000
             network_mode: "bridge"
             volumes:
-                  - /etice-local-data/containers/registry/data:/var/lib/registry
+                  - /container-data-local/containers/registry/data:/var/lib/registry
       nginx-registry:
             build:
                   context: nginx/
@@ -20,21 +20,21 @@ services:
             restart: always
             network_mode: "bridge"
             environment: 
-                  - ADMIN_REGISTRY_USER=redhat
+                  - ADMIN_REGISTRY_USER=user
                   - ADMIN_RESGITRY_PASSWD=1q2w3e
                   - SSL=true
                   - COUNTRY=BR
                   - STATE=Ceará
-                  - LOCALITY=FOrtaleza
-                  - ORGANIZATION=ETICE
+                  - LOCALITY=Fortaleza
+                  - ORGANIZATION=MYCOMPANY
                   - ORGANIZATIONALUNIT=IT 
-                  - COMMON_NAME=docker-registry.etice.ce.gov.br
-                  - EMAIL=datacenter@etice.ce.gov.br
+                  - COMMON_NAME=docker-registry.mycompany.com.br
+                  - EMAIL=admin@mycompany.com.br
             ports:
                   - 443:443
                   - 80:80
             links:
                   - registry
             volumes:
-                  - /etice-local-data/containers/registry/nginx/access:/etc/nginx/conf.d/access
-                  - /etice-local-data/containers/registry/nginx/certs:/etc/nginx/conf.d/certs
+                  - /container-data-local/containers/registry/nginx/access:/etc/nginx/conf.d/access
+                  - /container-data-local/containers/registry/nginx/certs:/etc/nginx/conf.d/certs
