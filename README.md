@@ -2,8 +2,7 @@
 
 The Registry is a stateless, highly scalable server side application that stores and lets you distribute Docker images. The Registry is open-source, under the permissive Apache license.
 
-
-# Variables for create a automaticly certificate Openssh
+# Variables
 
 ```
 ADMIN_REGISTRY_USER: Variable for to set a username
@@ -19,17 +18,6 @@ EMAIL: Admin email
 ```
 
 ## Basic commands
-Login on your registry
-
-* SSL = True
-```
-docker login https://myregistry.mycompany.com.br
-```
-
-* SSL = false
-```
-docker login http://myregistry.mycompany.com.br
-```
 
 Start your registry as local test
 
@@ -43,6 +31,18 @@ Start your registry as production enviroment
 ```
 $ docker-compose up -d --build 
 
+```
+
+Login on registry
+
+* SSL = True
+```
+$ docker login https://myregistry.mycompany.com.br
+```
+
+* SSL = false
+```
+$ docker login http://myregistry.mycompany.com.br
 ```
 
 Pull (or build) some image from the hub
